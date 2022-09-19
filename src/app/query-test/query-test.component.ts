@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, catchError, of } from 'rxjs';
 import { CompileToJsonService } from '../compile-to-json.service';
-import { DifferenceList } from '../interfaces/DifferenceList';
+import { DifferenceArray, DifferenceItem } from '../interfaces/DifferenceList';
 import { RequestService } from '../request.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class QueryTestComponent implements OnInit {
   showResult$ = new BehaviorSubject<boolean>(false);
   loadingIndicator$ = this.request._loading
   displayedColumns: string[] = ['expected', 'got']
-  differenceList$!: DifferenceList[]
+  differenceList$!: DifferenceItem[]
+  differenceArray$!: DifferenceArray[]
 
   ngOnInit(): void { }
 
@@ -27,15 +28,19 @@ export class QueryTestComponent implements OnInit {
     const json = this.compileJson.createTestJson(JSON.parse(queryString), JSON.parse(wantString))
     this.request.callTest(json).pipe(
       catchError(_ => of([]))
-    ).subscribe(response => { this.differenceList$ = response; this.loadingIndicator$.next(false) })
+    ).subscribe(async response => { this.differenceArray$ = response; this.sortOutput(response!); this.loadingIndicator$.next(false) })
   }
 
-  sortList(diff: string[]): DifferenceList[] {
-    if (diff.length === 0) return []
-    var list: DifferenceList[] = []
-    for (let i = 0; i < diff.length; i = i + 2) {
-      list.push({ expected: diff[i], got: diff[i + 1] })
+  sortOutput(response: DifferenceArray[]): void {
+    var docList: DifferenceItem[] = []
+    for (let i = 0; i < response.length; i++) {
+      docList.push(Object.assign(response[i]))
     }
-    return list
+    this.differenceList$ = docList
+    console.log(docList)
+  }
+
+  getItems(index: number): DifferenceItem[] {
+    return Object.assign(this.differenceList$[index])
   }
 }

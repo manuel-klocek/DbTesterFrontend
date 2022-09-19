@@ -1,4 +1,8 @@
-export interface DifferenceList {
-    expected: string;
-    got: string;
+export interface DifferenceItem {
+    expected: string
+    got: string
+}
+
+export interface DifferenceArray {
+    list: DifferenceItem[]
 }
