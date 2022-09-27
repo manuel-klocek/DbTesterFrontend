@@ -7,10 +7,9 @@ import { DifferenceArray } from './interfaces/DifferenceList';
   providedIn: 'root'
 })
 
-export class RequestService {
+export class PersistenceService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   _loading = new BehaviorSubject<boolean>(false);
 
