@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { CompileToJsonService } from '../compile-to-json.service';
-import { DifferenceArray, DifferenceItem } from '../interfaces/DifferenceList';
+import { DifferenceItem } from '../interfaces/DifferenceList';
 import { PersistenceService } from '../persistence.service';
 
 @Component({
@@ -20,9 +20,9 @@ export class QueryTestComponent implements OnInit {
   existsError$ = new BehaviorSubject<boolean>(false);
   error: Error | null = null
   loadingIndicator$ = this.request._loading
-  displayedColumns: string[] = ['expected', 'got']
-  differenceList$!: DifferenceItem[]
-  differenceArray$!: DifferenceArray[]
+  displayedColumns: string[] = ['field', 'expected', 'got']
+  differenceList$!: DifferenceItem[][]
+  differenceArray$!: Object[]
 
   ngOnInit(): void { }
 
@@ -38,7 +38,7 @@ export class QueryTestComponent implements OnInit {
     )
       .subscribe(async response => {
         this.differenceArray$ = response
-        this.sortOutput(response!)
+        this.method(response!)
         this.loadingIndicator$.next(false)
         this.handleError(this.error)
       })
@@ -61,16 +61,31 @@ export class QueryTestComponent implements OnInit {
     }
   }
 
-  sortOutput(response: DifferenceArray[]): void {
-    var docList: DifferenceItem[] = []
-    for (let i = 0; i < response.length; i++) {
-      docList.push(Object.assign(response[i]))
-    }
-    this.differenceList$ = docList
-    console.log(docList)
-  }
-
   getItems(index: number): DifferenceItem[] {
     return Object.assign(this.differenceList$[index])
+  }
+
+  method(jsonArr: Object[]): void {
+    var jsonList: Array<JSON[]> = []
+    jsonArr.forEach(item => {
+      jsonList.push(item as unknown as JSON[])
+    })
+
+    var json: any
+    var differList: DifferenceItem[][] = []
+
+    jsonList.forEach(doc => {
+      var itemList: DifferenceItem[] = []
+      doc.forEach(item => {
+        var propertyName = Object.keys(item)[0]
+        json = JSON.parse(JSON.stringify(item))
+        itemList.push({ field: propertyName, got: json[propertyName].got, expected: json[propertyName].expected })
+      })
+      differList.push(itemList)
+    })
+
+    console.log(differList)
+
+    this.differenceList$ = differList
   }
 }
