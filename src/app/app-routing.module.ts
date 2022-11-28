@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ManipulateDBComponent } from './manipulate-db/manipulate-db.component';
-import { QueryTestComponent } from './query-test/query-test.component';
+import { AggregationsComponent } from './aggregation/aggregations/aggregations.component';
+import { DbEditComponent } from './dbmanipulation/db-edit/db-edit.component';
+import { QueryTestComponent } from './DBTesting/query-test/query-test.component';
 import { SelectionComponent } from './selection/selection.component';
-import { TestcasesViewComponent } from './testcases-view/testcases-view.component';
 
 const routes: Routes = [
   { path: '', component: SelectionComponent },
-  { path: 'dbmanipulation', component: ManipulateDBComponent },
-  { path: 'case/showAll', component: TestcasesViewComponent },
+  { path: 'aggregations', component: AggregationsComponent },
+  { path: 'dbmanipulation', component: DbEditComponent },
   { path: 'testquery', component: QueryTestComponent }
 ];
 

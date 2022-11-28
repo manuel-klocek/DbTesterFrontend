@@ -1,0 +1,10 @@
+<div class="main">
+    <mat-card class="card">
+        <div class="input-form">
+            <label>Gebe die Id des Objekts ein: </label>
+            <input #input placeholder="Id" type="number" class="input-field">
+            <button mat-raised-button (click)="getObject(input.valueAsNumber)">Submit</button>
+        </div>
+    </mat-card>
+    <app-edit-card [object]="response$"></app-edit-card>>
+</div>

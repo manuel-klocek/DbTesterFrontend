@@ -1,0 +1,31 @@
+ul {
+    list-style-type: none;
+}
+
+li {
+    color: gray;
+}
+
+.container {
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+
+.container-keys-values {
+    margin-left: 25rem;
+    width: 45%;
+    float: left;
+    overflow: inherit;
+}
+
+.keys {
+    width: 32;
+    text-align: right;
+    float: left;
+}
+
+.values {
+    width: 32%;
+    text-align: left;
+    overflow: hidden;
+}

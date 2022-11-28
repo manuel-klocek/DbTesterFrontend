@@ -1,0 +1,25 @@
+<div class="main">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{changeTime}}</mat-card-title>
+            <mat-card-subtitle>Time of displayed change</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="container">
+                <div class="container-keys-values">
+                    <ul class="keys">
+                        <li *ngFor="let key of changeCard?.keys">
+                            {{key}}
+                        </li>
+                    </ul>
+                    <ul class="values">
+                        <li *ngFor="let value of changeCard?.values">
+                            {{value}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <br>
+</div>

@@ -1,8 +1,10 @@
 html,
 body {
+    width: auto;
     user-select: none;
     color: whitesmoke;
     font-family: 'Roboto Flex', sans-serif;
+    margin: 0.5rem;
 }
 
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";

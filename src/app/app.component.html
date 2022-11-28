@@ -1,4 +1,7 @@
 <div class="container">
   <label>Database Query Testing</label>
 </div>
-<router-outlet></router-outlet>
+<ng-container *ngIf="loadingIndicator$ | async">
+  <mat-progress-bar class="progress-bar" mode="indeterminate"></mat-progress-bar>
+</ng-container>
+<router-outlet class="outlet"></router-outlet>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, catchError, of, tap } from 'rxjs';
-import { CompileToJsonService } from '../compile-to-json.service';
-import { DifferenceItem } from '../interfaces/DifferenceList';
-import { PersistenceService } from '../persistence.service';
+import { CompileToJsonService } from '../../compile-to-json.service';
+import { DifferenceItem } from '../../interfaces/DifferenceList';
+import { PersistenceService } from '../../persistence.service';
 
 @Component({
   selector: 'app-query-test',

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PersistenceService } from './persistence.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(private request: PersistenceService) { }
+
   title = 'DbTestingFrontend';
+
+  loadingIndicator$ = this.request._loading
+
 }
