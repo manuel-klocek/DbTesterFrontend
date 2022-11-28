@@ -12,9 +12,9 @@ import { AutosizeModule } from '@techiediaries/ngx-textarea-autosize';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ManipulateDBComponent } from './manipulate-db/manipulate-db.component';
-import { ManipulateQuerydbComponent } from './manipulate-querydb/manipulate-querydb.component';
 import { QueryTestComponent } from './query-test/query-test.component';
 import { SelectionComponent } from './selection/selection.component';
+import { TestcasesViewComponent } from './testcases-view/testcases-view.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { SelectionComponent } from './selection/selection.component';
     SelectionComponent,
     QueryTestComponent,
     ManipulateDBComponent,
-    ManipulateQuerydbComponent
+    TestcasesViewComponent
   ],
   imports: [
     BrowserAnimationsModule,

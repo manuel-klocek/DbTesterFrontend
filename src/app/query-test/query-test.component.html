@@ -19,6 +19,12 @@
     <ng-container *ngIf="showResult$ | async">
         <a *ngFor="let doc of differenceList$; let i = index">
             <table mat-table [dataSource]="getItems(i)" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="field">
+                    <th mat-header-cell *matHeaderCellDef> Field </th>
+                    <td mat-cell *matCellDef="let element"> {{element.field}} </td>
+                </ng-container>
+
                 <ng-container matColumnDef="expected">
                     <th mat-header-cell *matHeaderCellDef> Expected </th>
                     <td mat-cell *matCellDef="let element"> {{element.expected}} </td>

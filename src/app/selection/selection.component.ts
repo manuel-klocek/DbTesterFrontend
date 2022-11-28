@@ -25,7 +25,7 @@ export class SelectionComponent implements OnInit {
   tiles: Tile[] = [
     { text: "Test Query", cols: 3, rows: 1, color: "lightblue" },
     { text: "Manipulate Database", cols: 1, rows: 2, color: "red" },
-    { text: "Manipulate Query Database", cols: 3, rows: 1, color: "lightgreen" }
+    { text: "Show Test-Cases", cols: 3, rows: 1, color: "lightgreen" }
   ]
 
   changeRoute(tag: string): void {
@@ -35,8 +35,8 @@ export class SelectionComponent implements OnInit {
       case "Test Query":
         url = "/testquery";
         break;
-      case "Manipulate Query Database":
-        url = "/qdbmanipulation";
+      case "Show Test-Cases":
+        url = "/case/showAll";
         break;
       case "Manipulate Database":
         url = "/dbmanipulation";
